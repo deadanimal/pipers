@@ -21,6 +21,7 @@ spec:
       - backend:
           serviceName: piper-api
           servicePort: 5000    
+                    
   - host: piper.pipeline.com.my
     http:
       paths:
