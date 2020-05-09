@@ -62,9 +62,10 @@ INSTALLED_APPS = [
     'simple_history',
 
     'organisations',
-    'users'
+    'users',
 
-
+    'meetings',
+    'notes',
 ]
 
 MIDDLEWARE = [

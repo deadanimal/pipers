@@ -1,11 +1,10 @@
-
 from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib.gis import admin
 
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
 from rest_framework_extensions.routers import NestedRouterMixin
 
 from rest_framework_simplejwt.views import (
@@ -14,22 +13,12 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView
 )
 
-
-from users.views import (
-    MyTokenObtainPairView
-)
-
-from organisations.views import (
-    OrganisationViewSet,
-)
-
-from users.views import (
-    CustomUserViewSet
-)
+from users.views import (MyTokenObtainPairView)
+from organisations.views import (OrganisationViewSet,)
+from users.views import (CustomUserViewSet)
 
 
-
-class NestedDefaultRouter(NestedRouterMixin, routers.DefaultRouter):
+class NestedDefaultRouter(NestedRouterMixin, DefaultRouter):
     pass
 
 
@@ -46,12 +35,26 @@ users_router = router.register(
 
 
 
+from meetings.views import (
+    MeetingViewSet, 
+    MeetingInvitationViewSet)
+from notes.views import (
+    NoteViewSet, 
+    NoteAttachmentViewSet)
+
+meetings_router = router.register('meetings', MeetingViewSet)
+meetings_router.register('invitations', MeetingInvitationViewSet, basename='meeting-invitations', parents_query_lookups=['meeting'])
+
+notes_router = router.register('notes', NoteViewSet, basename='note')
+notes_router.register('attachments', NoteAttachmentViewSet, basename='notes-attachments', parents_query_lookups=['note'])
+
+
 
 urlpatterns = [
 
-    url(r'v1/', include(router.urls)),
-    url(r'auth/', include('rest_auth.urls')),
-    url(r'auth/registration/', include('rest_auth.registration.urls')),
+    url('v1/', include(router.urls)),
+    url('auth/', include('rest_auth.urls')),
+    url('auth/registration/', include('rest_auth.registration.urls')),
 
     url('auth/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     url('auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  
