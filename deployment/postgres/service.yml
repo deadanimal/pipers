@@ -1,0 +1,13 @@
+## kubectl expose deployment postgres --type=LoadBalancer --name=postgres-service
+## kubectl expose deployment mqtt-mosquitto --type=LoadBalancer --name=mqtt-service
+kind: Service
+apiVersion: v1
+metadata:
+  name: postgres-service
+spec:
+  selector:
+    app: postgres-container
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: piper-my-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "piper-my-prod"
+spec:
+  tls:
+  - hosts:
+         
+    - piper.pipeline.com.my
+    - piper-api.pipeline.com.my               
+
+    secretName: piper-my-prod
+  rules:
+                                    
+  - host: piper-api.pipeline.com.my
+    http:
+      paths:
+      - backend:
+          serviceName: piper-api
+          servicePort: 5000    
+  - host: piper.pipeline.com.my
+    http:
+      paths:
+      - backend:
+          serviceName: piper-dashboard
+          servicePort: 80

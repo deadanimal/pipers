@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    name: piper-dashboard
+  name: piper-dashboard
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  selector:
+    matchLabels:
+      app: piper-dashboard
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: piper-dashboard
+    spec:
+      containers:
+      - image: afeezaziz/piper-dashboard:latest
+        imagePullPolicy: Always   
+        name: piper-dashboard
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

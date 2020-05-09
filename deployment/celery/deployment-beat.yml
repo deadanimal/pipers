@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piper-api-celery-beat
+  labels:
+    deployment: piper-api-celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: piper-api-celery-beat
+  template:
+    metadata:
+      labels:
+        pod: piper-api-celery-beat
+    spec:
+      containers:
+        - name: piper-api-celery-beat
+          image: afeezaziz/piper-api
+          # celery -A api beat -l debug
+          command: ['celery', '-A', 'api', 'beat', '-l', 'debug']
+          envFrom:
+            - secretRef:
+                name: piper-api-secret   
+          env:
+            - name: CELERY_BROKER_URL
+              value: redis://10.245.165.194:6379
+            - name: CELERY_RESULT_BACKEND
+              value: redis://10.245.165.194:6379                       

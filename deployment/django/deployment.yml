@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piper-api-deployment
+  labels:
+    app: piper-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: piper-api
+  template:
+    metadata:
+      labels:
+        app: piper-api
+    spec:
+      containers:
+      - name: piper-api
+        image: afeezaziz/piper-api
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        envFrom:
+          - secretRef:
+              name: piper-api-secret        

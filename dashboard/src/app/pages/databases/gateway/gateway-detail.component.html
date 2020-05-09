@@ -1,0 +1,202 @@
+<div class=" header pb-6" *ngIf="gateway">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <h6 class=" h2 d-inline-block mb-0">{{gateway.name}}</h6>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class=" container-fluid mt--6" *ngIf="gateway">
+  <!--
+  <div class=" card mb-4">
+    <div class=" card-header"><h3 class=" mb-0">Form group in grid</h3></div>
+
+    <div class=" card-body">
+
+      <div class=" row">
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label class=" form-control-label" for="example3cols1Input">
+              One of three cols
+            </label>
+
+            <input
+              class=" form-control"
+              id="example3cols1Input"
+              placeholder="One of three cols"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label class=" form-control-label" for="example3cols2Input">
+              One of three cols
+            </label>
+
+            <input
+              class=" form-control"
+              id="example3cols2Input"
+              placeholder="One of three cols"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class=" col-md-4">
+          <div class=" form-group">
+            <label class=" form-control-label" for="example3cols3Input">
+              One of three cols
+            </label>
+
+            <input
+              class=" form-control"
+              id="example3cols3Input"
+              placeholder="One of three cols"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class=" row">
+        <div class=" col-sm-6 col-md-3">
+          <div class=" form-group">
+            <label class=" form-control-label" for="example4cols1Input">
+              One of four cols
+            </label>
+
+            <input
+              class=" form-control"
+              id="example4cols1Input"
+              placeholder="One of four cols"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class=" col-sm-6 col-md-3">
+          <div class=" form-group">
+            <label class=" form-control-label" for="example4cols2Input">
+              One of four cols
+            </label>
+
+            <input
+              class=" form-control"
+              id="example4cols2Input"
+              placeholder="One of four cols"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class=" col-sm-6 col-md-3">
+          <div class=" form-group">
+            <label class=" form-control-label" for="example4cols3Input">
+              One of four cols
+            </label>
+
+            <input
+              class=" form-control"
+              id="example4cols3Input"
+              placeholder="One of four cols"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class=" col-sm-6 col-md-3">
+          <div class=" form-group">
+            <label class=" form-control-label" for="example4cols3Input">
+              One of four cols
+            </label>
+
+            <input
+              class=" form-control"
+              id="example4cols4Input"
+              placeholder="One of four cols"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  -->
+
+  <div class=" row">
+    <div class=" col-lg-6">
+      <div class=" card-wrapper">
+
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">Basic Details</h3></div>
+
+          <div class=" card-body">
+            <form #f="ngForm" (ngSubmit)="onSubmit()">
+              <div class=" form-group row">
+                <label
+                  class=" col-md-2 col-form-label form-control-label"
+                  for="example-text-input">
+                  UUID
+                </label>
+
+                <div class=" col-md-10">             
+                  {{gateway.id}}
+                </div>
+              </div>
+
+              <div class=" form-group row">
+                <label
+                  class=" col-md-2 col-form-label form-control-label"
+                  for="example-search-input">
+                  Name
+                </label>
+
+                <div class=" col-md-10">
+                  <input type="text" class=" form-control" [placeholder]="gateway.name" [(ngModel)]="gatewayForm.name" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+
+              <div class=" form-group row">
+                <label
+                  class=" col-md-2 col-form-label form-control-label"
+                  for="example-search-input">
+                  Label
+                </label>
+
+                <div class=" col-md-10">
+                  <input type="text" class=" form-control" [placeholder]="gateway.label" [(ngModel)]="gatewayForm.label" [ngModelOptions]="{standalone: true}">
+              </div>
+              </div>
+              <p>
+                <button class=" btn btn-default" type="submit" [disabled]="!f.valid">Update</button>
+              </p>
+            </form>   
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" col-lg-6">
+      <div class=" card-wrapper">
+
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">HTML5 inputs</h3></div>
+
+          <div class=" card-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

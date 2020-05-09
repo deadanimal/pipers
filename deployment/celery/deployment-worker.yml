@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piper-api-celery-worker
+  labels:
+    deployment: piper-api-celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: piper-api-celery-worker
+  template:
+    metadata:
+      labels:
+        pod: piper-api-celery-worker
+    spec:
+      containers:
+        - name: piper-api-celery-worker
+          image: afeezaziz/piper-api
+          # celery -A api worker -l debug
+          command: ['celery', '-A', 'api', 'worker', '-l', 'info']
+          envFrom:
+            - secretRef:
+                name: piper-api-secret            
+          env:
+            - name: CELERY_BROKER_URL
+              value: redis://10.245.165.194:6379
+            - name: CELERY_RESULT_BACKEND
+              value: redis://10.245.165.194:6379                
