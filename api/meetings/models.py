@@ -8,11 +8,16 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 from api.helpers import PathAndRename
 
+from notes.models import Note
+from users.models import CustomUser
 
 class Meeting(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)
+
+    active = models.BooleanField(default=False)
+    complete = models.BooleanField(default=False)
 
     MEETING_MEDIUM_TYPE = [
 
@@ -29,6 +34,8 @@ class Meeting(models.Model):
         default='NA',
     )      
 
+    notes = models.ManyToManyField(Note)
+
     def __str__(self):
         return self.name
 
@@ -37,12 +44,15 @@ class Meeting(models.Model):
 class MeetingInvitation(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(blank=False, max_length=255)
-
-    #sent = 
-    #accepted = 
+    name = models.CharField(blank=False, max_length=255) 
 
     meeting = models.ForeignKey(Meeting, on_delete=models.CASCADE, null=True)
 
+    invitor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='invitor')
+    invitee = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='invitee')
+
     def __str__(self):
         return self.name
+
+
+

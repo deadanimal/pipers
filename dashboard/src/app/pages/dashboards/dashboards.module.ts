@@ -6,9 +6,7 @@ import { BsDropdownModule } from "ngx-bootstrap";
 import { ProgressbarModule } from "ngx-bootstrap/progressbar";
 import { TooltipModule } from "ngx-bootstrap/tooltip";
 
-import { AlternativeComponent } from "./alternative/alternative.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { RadarComponent } from "./radar/radar.component";
 
 import { RouterModule } from "@angular/router";
 import { DashboardsRoutes } from "./dashboards.routing";
@@ -16,9 +14,7 @@ import { FormsModule } from '@angular/forms';
 
 
 let componentList = [
-  AlternativeComponent,
   DashboardComponent,
-  RadarComponent
 ]
 
 @NgModule({

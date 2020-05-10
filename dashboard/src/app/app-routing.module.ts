@@ -8,13 +8,7 @@ import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component
 
 import { PresentationComponent } from "./pages/presentation/presentation.component";
 
-import { CoreLaunchpadComponent } from './pages/fullviews/core-launchpad/core-launchpad.component';
-import { CoreFreehandComponent } from './pages/fullviews/core-freehand/core-freehand.component';
-import { CoreComponentComponent } from './pages/fullviews/core-component/core-component.component';
 
-import { RadarLiveviewComponent } from "./pages/fullviews/radar-liveview/radar-liveview.component";
-import { RadarActiveradarComponent } from './pages/fullviews/radar-activeradar/radar-activeradar.component';
-import { RadarAnalysisComponent } from './pages/fullviews/radar-analysis/radar-analysis.component';
 
 const routes: Routes = [
   {
@@ -26,36 +20,7 @@ const routes: Routes = [
     path: "home",
     component: PresentationComponent
   },  
-  {
-    path: "fullviews",
-    children: [
-      {
-        path: 'launchpad',
-        component: CoreLaunchpadComponent,
-      },
-      {
-        path: 'freehand',
-        component: CoreFreehandComponent,
-      },
-      {
-        path: 'component',
-        component: CoreComponentComponent
-      },         
-      {
-        path: 'radar/liveview',
-        component: RadarLiveviewComponent
-      },       
-      {
-        path: 'radar/activeradar',
-        component: RadarActiveradarComponent
-      },         
-      {
-        path: 'radar/analysis',
-        component: RadarAnalysisComponent
-      },       
-    ]
 
-  },    
   {
     path: "",
     component: AdminLayoutComponent,
@@ -65,9 +30,29 @@ const routes: Routes = [
         loadChildren: "./pages/dashboards/dashboards.module#DashboardsModule"
       },
       {
-        path: "databases",
-        loadChildren: "./pages/databases/databases.module#DatabasesModule"
+        path: "developments",
+        loadChildren: "./pages/developments/developments.module#DevelopmentsModule"
       },      
+      {
+        path: "managements",
+        loadChildren: "./pages/managements/managements.module#ManagementsModule"
+      },         
+      {
+        path: "projects",
+        loadChildren: "./pages/projects/projects.module#ProjectsModule"
+      },     
+      {
+        path: "sales",
+        loadChildren: "./pages/sales/sales.module#SalesModule"
+      },    
+      {
+        path: "supports",
+        loadChildren: "./pages/supports/supports.module#SupportsModule"
+      },                    
+      {
+        path: "tenders",
+        loadChildren: "./pages/tenders/tenders.module#TendersModule"
+      },           
         
 
     ]

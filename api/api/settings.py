@@ -66,6 +66,7 @@ INSTALLED_APPS = [
 
     'meetings',
     'notes',
+    'projects'
 ]
 
 MIDDLEWARE = [

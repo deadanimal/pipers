@@ -13,7 +13,9 @@ from django.utils.timezone import now
 
 from .models import (
     Note,
-    NoteAttachment
+    NoteAttachment,
+    NoteChart,
+    NoteItem
 )
 
 
@@ -28,3 +30,15 @@ class NoteAttachmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = NoteAttachment
         fields = '__all__'
+
+class NoteItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NoteItem
+        fields = '__all__'
+
+class NoteChartSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NoteChart
+        fields = '__all__'        

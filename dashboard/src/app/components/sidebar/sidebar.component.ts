@@ -32,70 +32,100 @@ export interface ChildrenItems2 {
 //Menu Items
 export const ROUTES: RouteInfo[] = [
   {
-    path: "/dashboards",
+    path: "/dashboards/dashboard",
     title: "Dashboard",
-    type: "sub",
+    type: "link",
     icontype: "ni-chart-pie-35 text-primary",
-    isCollapsed: true,
-    children: [
-      { path: "dashboard", title: "Finance", type: "link" },
-      { path: "dashboard", title: "Generation", type: "link" },
-      { path: "dashboard", title: "Demand", type: "link" },
-      { path: "dashboard", title: "Grid", type: "link" },
-
-
-      { path: "dashboard", title: "Dashboard", type: "link" },
-      { path: "alternative", title: "Alternative", type: "link" },
-      { path: "radar", title: "Radar", type: "link" }
-    ]
   },
   {
-    path: "/databases",
-    title: "Database",
+    path: "/projects",
+    title: "Project",
     type: "sub",
-    icontype: "ni-single-copy-04 text-orange",
+    icontype: "ni-single-copy-04 text-info",
     collapse: "examples",
     isCollapsed: true,
     children: [
-      { path: "account", title: "Account", type: "link" },
-      { path: "appliance", title: "Appliance", type: "link" },
-      { path: "bill", title: "Bill", type: "link" },
-      { path: "building", title: "Building", type: "link" },
-      { path: "device", title: "Device", type: "link" },
-      { path: "gateway", title: "Gateway", type: "link" },
-      { path: "goal", title: "Goal", type: "link" },
-      { path: "notification", title: "Notification", type: "link" },
-      { path: "organisation", title: "Organisation", type: "link" },
-      { path: "plant", title: "Plant", type: "link" },
-      { path: "report", title: "Report", type: "link" },
-      { path: "ticket", title: "Ticket", type: "link" },
-      { path: "user", title: "User", type: "link" },
+      { path: "document", title: "Document", type: "link" },
+      { path: "meeting", title: "Meeting", type: "link" },
+      { path: "milestone", title: "Milestone", type: "link" },
+      { path: "note", title: "Note", type: "link" },
+      { path: "training", title: "Training", type: "link" },
     ]
   }, 
   {
-    path: "/dashboards/radar",
-    title: "Maintenance",
-    type: "link",
-    icontype: "ni-settings text-info",
-  },      
-  {
-    path: "/dashboards/dasboard",
-    title: "GIS",
-    type: "link",
-    icontype: "ni-square-pin text-warning",
-  },    
-  {
-    path: "/dashboards/alternative",
-    title: "Sales",
-    type: "link",
-    icontype: "ni-shop text-success",
-  },    
-  {
-    path: "/dashboards/radar",
+    path: "/supports/ticket",
     title: "Support",
     type: "link",
     icontype: "ni-support-16 text-danger",
   },  
+
+  {
+    path: "/developments",
+    title: "Core",
+    type: "sub",
+    icontype: "ni-laptop text-default",
+    collapse: "examples",
+    isCollapsed: true,
+    children: [
+      { path: "flow", title: "Business Flow", type: "link" },
+      { path: "datatable", title: "Data Table", type: "link" },
+      { path: "deployment", title: "Deployment", type: "link" },
+      { path: "api", title: "API Development", type: "link" },
+      { path: "maintenance", title: "Maintenance", type: "link" },
+      { path: "mobileapp", title: "Mobile Application", type: "link" },
+      { path: "webapp", title: "Web Application", type: "link" },
+      { path: "overview", title: "Overview", type: "link" },
+      { path: "prototype", title: "Prototype", type: "link" },
+      { path: "wireframe", title: "Wireframe", type: "link" },
+    ]
+  },     
+
+  {
+    path: "/tenders",
+    title: "Tender & Quotation",
+    type: "sub",
+    icontype: "ni-paper-diploma text-blue",
+    collapse: "examples",
+    isCollapsed: true,
+    children: [
+      { path: "notification", title: "Notification", type: "link" },
+      { path: "presentation", title: "Presentation", type: "link" },      
+      { path: "proposal", title: "Proposal", type: "link" },
+      { path: "submission", title: "Submission", type: "link" },
+      { path: "task", title: "Task", type: "link" },
+      { path: "video", title: "Video", type: "link" },
+    ]
+  },   
+  
+  {
+    path: "/sales",
+    title: "Sales",
+    type: "sub",
+    icontype: "ni-money-coins text-orange",
+    collapse: "examples",
+    isCollapsed: true,
+    children: [
+      { path: "campaign", title: "Campaign", type: "link" },
+      { path: "contact", title: "Contact", type: "link" },
+      { path: "invoice", title: "Invoice", type: "link" },
+      { path: "meeting", title: "Meeting", type: "link" },
+      { path: "quotation", title: "Quotation", type: "link" },
+    ]
+  },     
+
+  {
+    path: "/managements",
+    title: "Management",
+    type: "sub",
+    icontype: "ni-archive-2 text-green",
+    collapse: "examples",
+    isCollapsed: true,
+    children: [
+      { path: "organisation", title: "Organisation", type: "link" },
+      { path: "user", title: "User", type: "link" },
+      { path: "project", title: "Project", type: "link" },
+    ]
+  },   
 
 ];
 

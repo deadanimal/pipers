@@ -40,14 +40,21 @@ from meetings.views import (
     MeetingInvitationViewSet)
 from notes.views import (
     NoteViewSet, 
-    NoteAttachmentViewSet)
+    NoteAttachmentViewSet,
+    NoteChartViewSet,
+    NoteItemViewSet)
+from projects.views import (
+    ProjectViewSet)
 
 meetings_router = router.register('meetings', MeetingViewSet)
 meetings_router.register('invitations', MeetingInvitationViewSet, basename='meeting-invitations', parents_query_lookups=['meeting'])
 
 notes_router = router.register('notes', NoteViewSet, basename='note')
 notes_router.register('attachments', NoteAttachmentViewSet, basename='notes-attachments', parents_query_lookups=['note'])
+notes_router.register('charts', NoteChartViewSet, basename='notes-charts', parents_query_lookups=['note'])
+notes_router.register('items', NoteItemViewSet, basename='notes-items', parents_query_lookups=['note'])
 
+projects_router = router.register('projects', ProjectViewSet, basename='project')
 
 
 urlpatterns = [

@@ -8,6 +8,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+from organisations.models import Organisation
 
 
 class CustomUser(AbstractUser):
@@ -15,17 +16,17 @@ class CustomUser(AbstractUser):
     name = models.CharField(blank=True, max_length=255)
 
     active = models.BooleanField(default=False)
-    enabled = models.BooleanField(default=False)
 
-    billing_address = models.CharField(blank=True, max_length=255)
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
 
     USER_TYPE = [
-        ('LV', 'Low Voltage'), 
-        ('HT', 'High Tension'), 
-        ('UT', 'Utility'), 
-        ('PP', 'Power Producer'), 
-        ('SU', 'Superuser'), 
 
+        # Pipeline Side
+        ('AN', 'Analyst'), 
+        ('DE', 'Developer'), 
+        ('PM', 'Project Manager'), 
+
+        ('CL', 'Client'), 
 
         ('NA', 'Not Available'),   
     ]
@@ -38,7 +39,7 @@ class CustomUser(AbstractUser):
    
     
     def __str__(self):
-        return self.name
+        return self.username
 
 
 
