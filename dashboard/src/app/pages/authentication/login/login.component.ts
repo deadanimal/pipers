@@ -2,6 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
+import * as jwt_decode from 'jwt-decode';
+
+
 @Component({
   selector: "app-login",
   templateUrl: "login.component.html"
@@ -10,20 +14,19 @@ export class LoginComponent implements OnInit {
   focus;
   focus1;
 
-  loginForm: any = {};
+  loginForm: any = {
+    username: '',
+    password: ''
+  };
   loading = false;
   submitted = false; 
   returnUrl: string;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    public router: Router,
     public authenticationService: AuthenticationService
-    ) {
-      if (this.authenticationService.currentUserValue) { 
-        this.router.navigate(['/']);
-    }
-  }
+    ) {}
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -31,22 +34,29 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    console.log(this.loginForm);
 
-    const formData = new FormData();
-    formData.append('username', this.loginForm.email);  
-    formData.append('password', this.loginForm.password);    
+    let userId: string;
 
-
-    this.authenticationService.login(formData).subscribe(
-      (data: any) => {
-        console.log(data);
+    this.authenticationService.login(this.loginForm.username, this.loginForm.password).subscribe(
+      (token: any) => {        
+        let decodedToken = jwt_decode(token['access']); 
+        userId = decodedToken.user_id;
+        
       },
       (error) => {
         console.log(error);
       },
       () => {
-        this.router.navigateByUrl(this.returnUrl);
+
+        this.authenticationService.getOwnUserDetail(userId)
+          .subscribe((data)=> {
+            //console.log(data)
+          },(error)=> {
+
+          },()=> {
+            this.router.navigateByUrl(this.returnUrl);
+          })
+        
       }
     )   
       

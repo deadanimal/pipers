@@ -82,7 +82,7 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: "/tenders",
-    title: "Tender & Quotation",
+    title: "Tender",
     type: "sub",
     icontype: "ni-paper-diploma text-blue",
     collapse: "examples",

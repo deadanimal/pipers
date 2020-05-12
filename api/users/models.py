@@ -7,6 +7,7 @@ import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from api.helpers import PathAndRename
 
 from organisations.models import Organisation
 
@@ -18,6 +19,7 @@ class CustomUser(AbstractUser):
     active = models.BooleanField(default=False)
 
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
+    profile_picture = models.ImageField(null=True, upload_to=PathAndRename('piper/profile-pictures'))
 
     USER_TYPE = [
 

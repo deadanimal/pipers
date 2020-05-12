@@ -34,7 +34,7 @@ users_router = router.register(
 )
 
 
-
+from funcs.views import (FuncViewSet)
 from meetings.views import (
     MeetingViewSet, 
     MeetingInvitationViewSet)
@@ -45,6 +45,9 @@ from notes.views import (
     NoteItemViewSet)
 from projects.views import (
     ProjectViewSet)
+
+
+funcs_router = router.register('funcs', FuncViewSet)
 
 meetings_router = router.register('meetings', MeetingViewSet)
 meetings_router.register('invitations', MeetingInvitationViewSet, basename='meeting-invitations', parents_query_lookups=['meeting'])

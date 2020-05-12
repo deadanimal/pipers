@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
          
-    - piper.pipeline.com.my
+    - pipeline.com.my
     - piper-api.pipeline.com.my               
 
     secretName: piper-my-prod
@@ -22,7 +22,7 @@ spec:
           serviceName: piper-api
           servicePort: 5000    
                     
-  - host: piper.pipeline.com.my
+  - host: pipeline.com.my
     http:
       paths:
       - backend:

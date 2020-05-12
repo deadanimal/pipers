@@ -223,71 +223,7 @@
             >
           </div>
         </li>
-        <li class="nav-item dropdown" dropdown placement="bottom-right">
-          <a
-            class="nav-link dropdown-toggle"
-            href="javascript:void(0)"
-            role="button"
-            dropdownToggle
-          >
-            <i class="ni ni-ungroup"></i>
-          </a>
-          <div
-            class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default dropdown-menu-right"
-            *dropdownMenu
-          >
-            <div class="row shortcuts px-4">
-              <a href="javascript:void()" class="col-4 shortcut-item">
-                <span
-                  class="shortcut-media avatar rounded-circle bg-gradient-red"
-                >
-                  <i class="ni ni-calendar-grid-58"></i>
-                </span>
-                <small>Calendar</small>
-              </a>
-              <a href="javascript:void()" class="col-4 shortcut-item">
-                <span
-                  class="shortcut-media avatar rounded-circle bg-gradient-orange"
-                >
-                  <i class="ni ni-email-83"></i>
-                </span>
-                <small>Email</small>
-              </a>
-              <a href="javascript:void()" class="col-4 shortcut-item">
-                <span
-                  class="shortcut-media avatar rounded-circle bg-gradient-info"
-                >
-                  <i class="ni ni-credit-card"></i>
-                </span>
-                <small>Payments</small>
-              </a>
-              <a href="javascript:void()" class="col-4 shortcut-item">
-                <span
-                  class="shortcut-media avatar rounded-circle bg-gradient-green"
-                >
-                  <i class="ni ni-books"></i>
-                </span>
-                <small>Reports</small>
-              </a>
-              <a href="javascript:void()" class="col-4 shortcut-item">
-                <span
-                  class="shortcut-media avatar rounded-circle bg-gradient-purple"
-                >
-                  <i class="ni ni-pin-3"></i>
-                </span>
-                <small>Maps</small>
-              </a>
-              <a href="javascript:void()" class="col-4 shortcut-item">
-                <span
-                  class="shortcut-media avatar rounded-circle bg-gradient-yellow"
-                >
-                  <i class="ni ni-basket"></i>
-                </span>
-                <small>Shop</small>
-              </a>
-            </div>
-          </div>
-        </li>
+
       </ul>
       <!-- User -->
       <ul class="navbar-nav align-items-center ml-auto ml-md-0">
@@ -295,41 +231,35 @@
           <a class="nav-link pr-0 dropdown-toggle" role="button" dropdownToggle>
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img
+                <img 
+                  *ngIf="profile_picture"
                   alt="Image placeholder"
-                  src="assets/img/theme/team-4.jpg"
+                  src="{{ profile_picture }}"
                 />
               </span>
+              <!--
               <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                <span class="mb-0 text-sm  font-weight-bold">{{ username }}</span>
               </div>
+              -->
             </div>
           </a>
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" *dropdownMenu>
+
             <a
               routerLinkActive="active"
               [routerLink]="['/profile']"
               class="dropdown-item">
               <i class="ni ni-single-02"></i> <span>Profile</span>
             </a>
+
             <a
               routerLinkActive="active"
               [routerLink]="['/settings']"
               class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i> <span>Settings</span>
             </a>
-            <a
-              routerLinkActive="active"
-              [routerLink]="['/activity']"
-              class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i> <span>Activity</span>
-            </a>
-            <a
-              routerLinkActive="active"
-              [routerLink]="['/support']"
-              class="dropdown-item">
-              <i class="ni ni-support-16"></i> <span>Support</span>
-            </a>
+
             <div class="dropdown-divider"></div>
             <a (click)="logout()" class="dropdown-item">
               <i class="ni ni-user-run"></i> <span>Logout</span>

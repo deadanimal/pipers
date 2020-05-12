@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'organisations',
     'users',
 
+    'funcs',
     'meetings',
     'notes',
     'projects'

@@ -7,6 +7,7 @@ import {
   LocationStrategy,
   PathLocationStrategy
 } from "@angular/common";
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: "app-navbar",
@@ -14,14 +15,20 @@ import {
   styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit {
+  
   public focus;
   public listTitles: any[];
   public location: Location;
   sidenavOpen: boolean = true;
+
+  public username: string = '';
+  public profile_picture: string = '';
+
   constructor(
     location: Location,
     private element: ElementRef,
-    private router: Router
+    private router: Router,
+    public authenticationService: AuthenticationService
   ) {
     this.location = location;
     this.router.events.subscribe((event: Event) => {
@@ -46,6 +53,9 @@ export class NavbarComponent implements OnInit {
            console.log(event.error);
        }
    });
+
+
+   this.profile_picture = this.authenticationService.currentUser['profile_picture'];
 
   }
 
@@ -114,6 +124,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.authenticationService.logout();
     this.router.navigateByUrl('/');
   }
 

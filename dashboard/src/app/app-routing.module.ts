@@ -5,25 +5,31 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
+import { PresentationLayoutComponent } from "./layouts/presentation-layout/presentation-layout.component";
 
-import { PresentationComponent } from "./pages/presentation/presentation.component";
-
-
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home",
+    redirectTo: "p",
     pathMatch: "full"
   },
   {
-    path: "home",
-    component: PresentationComponent
-  },  
+    path: "",
+    component: PresentationLayoutComponent,
+    children: [
+      {
+        path: "p",
+        loadChildren: "./pages/presentations/presentations.module#PresentationsModule"
+      },
+    ]
+  },
 
   {
     path: "",
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: "dashboards",
