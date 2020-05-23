@@ -8,7 +8,7 @@ metadata:
 spec:
   tls:
   - hosts:
-         
+    - pipeline-network.com     
     - pipeline.com.my
     - piper-api.pipeline.com.my               
 
@@ -28,3 +28,10 @@ spec:
       - backend:
           serviceName: piper-dashboard
           servicePort: 80
+
+  - host: pipeline-network.com
+    http:
+      paths:
+      - backend:
+          serviceName: piper-dashboard
+          servicePort: 80          

@@ -1,0 +1,112 @@
+<div class=" header pb-6" *ngIf="diagram">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <h6 class=" h2 d-inline-block mb-0">{{ diagram.name }}</h6>
+        </div> 
+
+        <div class=" col-lg-6 col-5 text-right">
+          <button class=" btn btn-sm btn-default" (click)="generateUML()">Generate UML</button>
+          <button class=" btn btn-sm btn-danger" (click)="delete(diagram)">Delete</button>
+          <!--<button class=" btn btn-sm btn-success" (click)="moveTo('request')">Request</button>        -->
+          <!--<button class=" btn btn-sm btn-info" (click)="moveTo('list')">View</button>-->
+          <!--
+          <button class=" btn btn-sm btn-danger" (click)="moveTo('new')">Need Help</button>
+        -->
+        </div>            
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6" *ngIf="diagram">
+
+
+
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+  <div class=" row">
+
+    <div class=" col">
+      <div class=" card-wrapper">
+        <div class=" card">
+          <!--<div class=" card-header"><h3 class=" mb-0">New Diagram</h3></div>-->
+
+          <div class=" card-body">
+          
+  
+              
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label">Name</label>
+                <div class=" col-md-9">
+                  <input type="text" class=" form-control" [placeholder]="diagram.name" [(ngModel)]="diagram.name" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>              
+
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label">Class Type</label>
+                <div class=" col-md-9 col-form-label">             
+                  <div *ngIf="diagram.class_type=='PR'">Project</div>
+                  <div *ngIf="diagram.class_type=='SM'">Submission</div>
+                </div>
+              </div>                      
+                      
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label" *ngIf="diagram.class_type=='PR'">Project Name</label>
+                <label class=" col-md-3 col-form-label form-control-label" *ngIf="diagram.class_type=='SM'">Submission Name</label>
+                <div class=" col-md-9 col-form-label">             
+                  <div *ngIf="diagram.class_type=='PR'">{{diagram.project.name}}</div>
+                  <div *ngIf="diagram.class_type=='SM'">{{diagram.submission.name}}</div>
+                </div>
+              </div>                      
+                      
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label">Diagram Type</label>
+                <div class=" col-md-9 col-form-label">             
+                  <div *ngIf="diagram.diagram_type=='DP'">Data Table</div>
+                  <div *ngIf="diagram.diagram_type=='PF'">Process Flow</div>
+                </div>
+              </div>      
+                                    
+              
+              <div class="form-group">
+                <label>Code</label>
+                <textarea class="form-control" [(ngModel)]="diagram.code" [ngModelOptions]="{standalone: true}" rows="8"></textarea>
+              </div>               
+                           
+
+              <p>
+                <button class=" btn btn-sm btn-default" type="submit" [disabled]="!f.valid">Update</button>                
+              </p>
+                       
+
+          </div>
+        
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class=" col">
+
+      <div class=" card-wrapper" *ngIf="svg_link != ''">
+
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">Generated Diagram</h3></div>
+          <div class=" card-body">
+
+            <img class="card-img-top" src="{{svg_link}}" alt="Card image cap">
+
+          </div>
+        </div>
+
+
+      </div>      
+
+    </div>
+  </div>  
+  </form>   
+
+</div>

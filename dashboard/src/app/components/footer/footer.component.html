@@ -6,30 +6,26 @@
           &copy; {{ test | date: "yyyy" }}
           <a
             [routerLink]="['/dashboards/dashboard']"
-            class="font-weight-bold ml-1"
-            target="_blank">Pipeline Network Sdn. Bhd.</a>
+            class="font-weight-bold ml-1">Pipeline Network Sdn. Bhd.</a>
         </div>
       </div>
       <div class="col-xl-6">
         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
           <li class="nav-item">
             <a
-              [routerLink]="['/dashboards/dashboard']"
-              class="nav-link"
-              target="_blank">About</a>
+              [routerLink]="['/p/about']"
+              class="nav-link">About</a>
+          </li>                
+          <li class="nav-item">
+            <a
+            [routerLink]="['/p/terms']"
+              class="nav-link">Terms</a>
           </li>
           <li class="nav-item">
             <a
-              [routerLink]="['/dashboards/dashboard']"
-              class="nav-link"
-              target="_blank">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a
-              [routerLink]="['/dashboards/dashboard']"
-              class="nav-link"
-              target="_blank">License</a>
-          </li>
+            [routerLink]="['/p/privacy']"
+              class="nav-link">Privacy</a>
+          </li>  
         </ul>
       </div>
     </div>

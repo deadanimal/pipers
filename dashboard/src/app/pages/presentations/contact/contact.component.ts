@@ -12,7 +12,7 @@ import { FuncService } from 'src/app/services/func.service';
 
 @Component({
   selector: "app-contact",
-  templateUrl: "./contact.component.html",
+  templateUrl: "contact.component.html",
 })
 export class ContactComponent implements OnInit {
   

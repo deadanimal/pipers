@@ -48,7 +48,7 @@ export const ROUTES: RouteInfo[] = [
       { path: "document", title: "Document", type: "link" },
       { path: "meeting", title: "Meeting", type: "link" },
       { path: "milestone", title: "Milestone", type: "link" },
-      { path: "note", title: "Note", type: "link" },
+      //{ path: "note", title: "Note", type: "link" },
       { path: "training", title: "Training", type: "link" },
     ]
   }, 
@@ -67,16 +67,20 @@ export const ROUTES: RouteInfo[] = [
     collapse: "examples",
     isCollapsed: true,
     children: [
-      { path: "flow", title: "Business Flow", type: "link" },
-      { path: "datatable", title: "Data Table", type: "link" },
-      { path: "deployment", title: "Deployment", type: "link" },
-      { path: "api", title: "API Development", type: "link" },
-      { path: "maintenance", title: "Maintenance", type: "link" },
-      { path: "mobileapp", title: "Mobile Application", type: "link" },
-      { path: "webapp", title: "Web Application", type: "link" },
-      { path: "overview", title: "Overview", type: "link" },
-      { path: "prototype", title: "Prototype", type: "link" },
-      { path: "wireframe", title: "Wireframe", type: "link" },
+      //{ path: "flow", title: "Business Flow", type: "link" },
+      //{ path: "datatable", title: "Data Table", type: "link" },
+      //{ path: "flow", title: "Business Flow", type: "link" },
+      //{ path: "datatable", title: "Data Table", type: "link" },
+      //{ path: "api", title: "API Development", type: "link" },
+      //{ path: "mobileapp", title: "Mobile Application", type: "link" },
+      //{ path: "webapp", title: "Web Application", type: "link" },
+      //{ path: "prototype", title: "Prototype", type: "link" },      
+      { path: "diagram", title: "Analyst: Diagram", type: "link" },
+      { path: "document", title: "Analyst: Document", type: "link" },
+      { path: "wireframe", title: "Analyst: Wireframe", type: "link" },
+      { path: "commit", title: "Developer: Commit", type: "link" },
+      { path: "deployment", title: "Developer: Deployment", type: "link" },
+      { path: "maintenance", title: "Developer: Maintenance", type: "link" }
     ]
   },     
 
@@ -90,10 +94,11 @@ export const ROUTES: RouteInfo[] = [
     children: [
       { path: "notification", title: "Notification", type: "link" },
       { path: "presentation", title: "Presentation", type: "link" },      
-      { path: "proposal", title: "Proposal", type: "link" },
+      //{ path: "proposal", title: "Proposal", type: "link" },
+      //{ path: "prototype", title: "Prototype", type: "link" },
       { path: "submission", title: "Submission", type: "link" },
-      { path: "task", title: "Task", type: "link" },
-      { path: "video", title: "Video", type: "link" },
+      //{ path: "task", title: "Task", type: "link" },
+      //{ path: "video", title: "Video", type: "link" },
     ]
   },   
   

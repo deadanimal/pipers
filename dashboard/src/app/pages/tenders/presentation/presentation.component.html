@@ -1,0 +1,132 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <h6 class=" h2 d-inline-block mb-0">Tender Presentation</h6>
+        </div>
+
+        <div class=" col-lg-6 col-5 text-right">
+          <button class=" btn btn-sm btn-success" (click)="moveTo('new')">Create New</button>
+          <button class=" btn btn-sm btn-default" (click)="moveTo('list')">View All</button>
+        </div>        
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+
+  <div id="card-stats-bg-component" class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="card-stats-bg-component-tab">
+    <div class="row mb-4">
+
+      <div class="col-lg-3">
+        <div class="card bg-gradient-default">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">TBD</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-success">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">TBD</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-info">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">TBD</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+
+      <div class="col-lg-3">
+        <div class="card bg-danger">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">Nearest Presentation Date</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>  
+
+  <div class=" row">
+    <div class=" col">
+      <div class=" card">
+
+      <div class=" table-responsive" >
+        <table class=" table align-items-center table-flush" id="first-list">
+          <thead class=" thead-light">
+            <tr>
+              <th scope="col">Project</th>
+              <th scope="col">Client</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+    
+          <tbody class=" list">
+    
+              <tr *ngFor="let presentation of presentations">
+                <th>{{presentation.project}}</th>
+                <td>{{presentation.client?.name}}</td>          
+                <td>{{presentation.proposed_date | amLocal | amDateFormat:'DD-MMM HH:mm' }}</td>
+                <td>--status--</td>
+      
+                <td class=" text-right">              
+                  <button class=" btn btn-sm btn-default" (click)="action('detail', presentation )">View</button>
+                  <button class=" btn btn-sm btn-info" (click)="action('reschedule', presentation)">Reschedule</button>>
+                </td>
+              </tr>            
+              
+              <tr>
+                <th>--project--</th>
+                <td>--client-name--</td>          
+                <td>--proposed-date--</td>
+                <td>--status--</td>
+      
+                <td class=" text-right">              
+                  <button class=" btn btn-sm btn-default" (click)="action('detail', presentation )">View</button>
+                  <button class=" btn btn-sm btn-info" (click)="action('reschedule', presentation)">Reschedule</button>
+                </td>
+              </tr>                 
+    
+
+          </tbody>
+        </table>
+      </div>   
+      
+      </div>
+
+    </div>
+  </div>
+
+</div>

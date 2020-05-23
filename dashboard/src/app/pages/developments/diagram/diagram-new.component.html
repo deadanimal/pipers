@@ -1,0 +1,120 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <h6 class=" h2 d-inline-block mb-0">Create Diagram</h6>
+        </div> 
+
+        <div class=" col-lg-6 col-5 text-right">
+          <button class=" btn btn-sm btn-default" (click)="generateUML()">Generate UML</button>
+          <!--<button class=" btn btn-sm btn-success" (click)="moveTo('request')">Request</button>        -->
+          <!--<button class=" btn btn-sm btn-info" (click)="moveTo('list')">View</button>-->
+          <!--
+          <button class=" btn btn-sm btn-danger" (click)="moveTo('new')">Need Help</button>
+        -->
+        </div>            
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+
+
+
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+  <div class=" row">
+
+    <div class=" col">
+      <div class=" card-wrapper">
+        <div class=" card">
+          <!--<div class=" card-header"><h3 class=" mb-0">New Diagram</h3></div>-->
+
+          <div class=" card-body">
+          
+    
+              <div class=" form-group">
+                <label class=" form-control-label">Name </label>
+                <input type="text" class=" form-control" placeholder="Name of Diagram" [(ngModel)]="diagramForm.name" [ngModelOptions]="{standalone: true}">
+              </div>    
+
+              <div class=" form-group">
+                <label class=" form-control-label">Class Type </label>
+                <select class="form-control" [(ngModel)]="diagramForm.class_type" [ngModelOptions]="{standalone: true}">
+                  <option value="PR">Project</option>
+                  <option value="SM">Submission</option>
+                </select>                  
+              </div>                    
+                      
+              <div class=" form-group" *ngIf="diagramForm.class_type == 'PR'">
+                <label class=" form-control-label">Project </label>                
+                  <ng-select 
+                    [items]="projects"
+                    bindLabel="name"
+                    bindValue="id"
+                    [(ngModel)]="diagramForm.project"
+                    [ngModelOptions]="{standalone: true}">
+                  </ng-select>                
+              </div>       
+              
+              <div class=" form-group" *ngIf="diagramForm.class_type == 'SM'">
+                <label class=" form-control-label">Submission </label>                
+                  <ng-select 
+                    [items]="submissions"
+                    bindLabel="name"
+                    bindValue="id"
+                    [(ngModel)]="diagramForm.submission"
+                    [ngModelOptions]="{standalone: true}">
+                  </ng-select>                
+              </div>                   
+
+              <div class=" form-group">
+                <label class=" form-control-label">Diagram Type </label>
+                <select class="form-control" [(ngModel)]="diagramForm.diagram_type" [ngModelOptions]="{standalone: true}">
+                  <option value="DP">Data Table</option>
+                  <option value="PF">Process Flow</option>
+                </select>                  
+              </div>   
+              
+              <div class="form-group">
+                <label>Code</label>
+                <textarea class="form-control" [(ngModel)]="diagramForm.code" [ngModelOptions]="{standalone: true}" rows="8"></textarea>
+              </div>               
+                           
+
+              <p>
+                <button class=" btn btn-sm btn-default" type="submit" [disabled]="!f.valid">Submit</button>                
+              </p>
+                       
+
+          </div>
+        
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class=" col">
+
+      <div class=" card-wrapper" *ngIf="svg_link != ''">
+
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">Generated Diagram</h3></div>
+          <div class=" card-body">
+
+            <img class="card-img-top" src="{{svg_link}}" alt="Card image cap">
+
+          </div>
+        </div>
+
+
+      </div>      
+
+    </div>
+  </div>  
+  </form>   
+
+</div>

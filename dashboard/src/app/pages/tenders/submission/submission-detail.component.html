@@ -1,0 +1,115 @@
+<div class=" header pb-6" *ngIf="submission">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-6">
+          <h6 class=" h2 d-inline-block mb-0">Submission Detail</h6>
+        </div>
+
+        <div class=" col-lg-6 col-6 text-right">
+          <button class=" btn btn-default" (click)="action('add_provided_document')">Add Provided Document</button>
+          <button class=" btn btn-default" (click)="action('add_task')">Add Task</button>
+        </div>           
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class=" container-fluid mt--6" *ngIf="submission">
+
+  <div class=" row">
+    <div class=" col-lg-6">
+      <div class=" card-wrapper">
+
+        <div class=" card">
+
+          <div class=" card-body">
+              
+
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label">
+                  Project
+                </label>
+
+                <div class=" col-md-9 col-form-label">             
+                  {{submission.project}}
+                </div>
+              </div>
+
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label">
+                  Codename
+                </label>
+
+                <div class=" col-md-9 col-form-label">             
+                  {{submission.codename}}
+                </div>
+              </div>              
+
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label">
+                  Client
+                </label>
+
+                <div class=" col-md-9 col-form-label">             
+                  {{submission.client.name}}
+                </div>
+              </div>
+
+              <div class=" form-group row">
+                <label class=" col-md-3 col-form-label form-control-label">
+                  Submission Date
+                </label>
+
+                <div class=" col-md-9 col-form-label">             
+                  {{submission.submission_date}}
+                </div>
+              </div>              
+
+              <p>
+                <button class=" btn btn-success">Submit</button>
+                <button class=" btn btn-danger">Fail</button>
+                <button class=" btn btn-default">Update</button>
+              </p>
+
+              <p class="card-text"><small class="text-muted">ID: {{submission.id}}</small></p>
+
+          </div>
+        </div>
+
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">Provided Document</h3></div>
+
+          <div class=" card-body">
+
+          </div>
+        </div>        
+      </div>
+    </div>
+
+    <div class=" col-lg-6">
+      <div class=" card-wrapper">
+
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">Submission Task</h3></div>
+
+          <div class=" card-body">
+
+          </div>
+        </div>
+
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">Submission Timeline</h3></div>
+
+          <div class=" card-body">
+
+          </div>
+        </div>        
+        
+
+      </div>
+    </div>
+  </div>
+</div>

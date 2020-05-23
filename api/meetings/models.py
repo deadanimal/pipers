@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.formats import get_format
 
 from django.contrib.gis.db import models
+from simple_history.models import HistoricalRecords
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from api.helpers import PathAndRename
@@ -36,6 +37,8 @@ class Meeting(models.Model):
 
     notes = models.ManyToManyField(Note)
 
+    history = HistoricalRecords()
+
     def __str__(self):
         return self.name
 
@@ -50,6 +53,8 @@ class MeetingInvitation(models.Model):
 
     invitor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='invitor')
     invitee = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='invitee')
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.name

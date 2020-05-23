@@ -1,0 +1,108 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <h6 class=" h2 d-inline-block mb-0">Create Deployment</h6>
+        </div> 
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+
+
+
+
+  <div class=" row">
+
+    <div class=" col">
+      <div class=" card-wrapper">
+        <div class=" card">
+          <!--<div class=" card-header"><h3 class=" mb-0">New Deployment</h3></div>-->
+
+          <div class=" card-body">
+
+            <form #f="ngForm" (ngSubmit)="onSubmit()">
+    
+              <div class=" form-group">
+                <label class=" form-control-label">Name </label>
+                <input type="text" class=" form-control" placeholder="Name of Deployment" [(ngModel)]="deploymentForm.name" [ngModelOptions]="{standalone: true}">
+              </div>    
+
+              <div class=" form-group">
+                <label class=" form-control-label">Comment </label>
+                <textarea class="form-control" [(ngModel)]="deploymentForm.comment" [ngModelOptions]="{standalone: true}" rows="3"></textarea>
+              </div>                  
+  
+              
+              <div class=" form-group">
+                <label class=" form-control-label">Class Type </label>
+                <select class="form-control" [(ngModel)]="deploymentForm.class_type" [ngModelOptions]="{standalone: true}">
+                  <option value="PR">Project</option>
+                  <option value="SM">Submission</option>
+                </select>                  
+              </div>                    
+                      
+              <div class=" form-group" *ngIf="deploymentForm.class_type == 'PR'">
+                <label class=" form-control-label">Project </label>                
+                  <ng-select 
+                    [items]="projects"
+                    bindLabel="name"
+                    bindValue="id"
+                    [(ngModel)]="deploymentForm.project"
+                    [ngModelOptions]="{standalone: true}">
+                  </ng-select>                
+              </div>       
+              
+              <div class=" form-group" *ngIf="deploymentForm.class_type == 'SM'">
+                <label class=" form-control-label">Submission </label>                
+                  <ng-select 
+                    [items]="submissions"
+                    bindLabel="name"
+                    bindValue="id"
+                    [(ngModel)]="deploymentForm.submission"
+                    [ngModelOptions]="{standalone: true}">
+                  </ng-select>                
+              </div>     
+              
+              <div class=" form-group">
+                <label class=" form-control-label">Deployment Type </label>
+                <select class="form-control" [(ngModel)]="deploymentForm.deployment_type" [ngModelOptions]="{standalone: true}">
+                  <option value="PR">Project</option>
+                  <option value="SM">Submission</option>
+                </select>                  
+              </div>                    
+
+              <p>
+                <button class=" btn btn-sm btn-default" type="submit" [disabled]="!f.valid">Submit</button>
+              </p>
+            </form>            
+
+          </div>
+        
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class=" col">
+
+      <!--
+      <div class=" card-wrapper">
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">New Deployment</h3></div>
+
+          <div class=" card-body">
+          </div>
+        </div>
+      </div>      
+    -->
+    </div>
+  </div>  
+  
+
+</div>

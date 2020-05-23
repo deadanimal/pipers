@@ -20,6 +20,24 @@ export class NotificationService {
         return this.http.get<Notification>(`${environment.apiUrl}notifications/${id}`);
     }
 
+    getNotificationsAction(action) {
+        if (action == 'archived') {
+            return this.http.get<Notification[]>(`${environment.apiUrl}notifications/archived`);
+        } else if (action == 'created') {
+            return this.http.get<Notification[]>(`${environment.apiUrl}notifications/created`);
+        } else if (action == 'submitted') {
+            return this.http.get<Notification[]>(`${environment.apiUrl}notifications/submitted`);
+        }
+    }
+
+    approveNotification(id: string) {
+        return this.http.get<Notification>(`${environment.apiUrl}notifications/${id}/approve`);
+    }    
+
+    rejectNotification(id: string) {
+        return this.http.get<Notification>(`${environment.apiUrl}notifications/${id}/reject`);
+    }    
+
     newNotification(form: any) {
         return this.http.post(`${environment.apiUrl}notifications/`, form);
     }
@@ -27,6 +45,10 @@ export class NotificationService {
     updateNotification(id: string, form: any) {
         return this.http.put(`${environment.apiUrl}notifications/${id}/`, form);
     }    
+
+    deleteNotification(id: string) {
+        return this.http.delete(`${environment.apiUrl}notifications/${id}/`);
+    }        
 
 
 }

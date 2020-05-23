@@ -48,9 +48,7 @@
                   <input
                     class="form-control"
                     placeholder="Please enter your name"
-                    type="text"
-                    (focus)="focus1 = true"
-                    (blur)="focus1 = false"
+                    type="text"                  
                     [(ngModel)]="contactForm.name" [ngModelOptions]="{standalone: true}"/>
                 </div>
               </div>              
@@ -65,9 +63,7 @@
                   <input
                     class="form-control"
                     placeholder="Please enter your email"
-                    type="email"
-                    (focus)="focus = true"
-                    (blur)="focus = false"
+                    type="email"                    
                     [(ngModel)]="contactForm.email" [ngModelOptions]="{standalone: true}"/>
                 </div>
 

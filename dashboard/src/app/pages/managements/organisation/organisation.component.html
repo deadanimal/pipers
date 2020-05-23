@@ -3,11 +3,11 @@
     <div class=" header-body">
       <div class=" row align-items-center py-4">
         <div class=" col-lg-6 col-7">
-          <h6 class=" h2 d-inline-block mb-0">Database: Organisation</h6>
+          <h6 class=" h2 d-inline-block mb-0">Organisation List</h6>
         </div>
 
         <div class=" col-lg-6 col-5 text-right">
-          <button class=" btn btn-sm btn-success" (click)="moveTo('new')">Add Organisation</button>
+          <button class=" btn btn-sm btn-default" (click)="moveTo('new')">Add</button>
         </div>        
 
       </div>
@@ -16,6 +16,63 @@
 </div>
 
 <div class=" container-fluid mt--6">
+
+  <div id="card-stats-bg-component" class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="card-stats-bg-component-tab">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card bg-gradient-default">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">Organisation In List</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-success">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">Active Business</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-info">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">New Registration</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-danger">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">Inactive Business</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>    
 
   <div class=" row">
     <div class=" col">
@@ -72,7 +129,11 @@
             (select)="onSelect($event)">
 
             <ngx-datatable-column name="Name"></ngx-datatable-column>
-            <ngx-datatable-column name="Id"></ngx-datatable-column>
+            
+            <ngx-datatable-column name="Short Name">
+              <ng-template let-column="column" ngx-datatable-header-template> Short Name </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>{{ row.short_name }}</ng-template>              
+            </ngx-datatable-column>
 
           </ngx-datatable>
         </div>

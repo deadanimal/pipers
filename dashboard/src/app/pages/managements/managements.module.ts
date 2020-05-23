@@ -24,6 +24,7 @@ import { UserDetailComponent } from './user/user-detail.component';
 
 import { RouterModule } from "@angular/router";
 import { ManagementsRoutes } from "./managements.routing";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 let componentList = [
@@ -49,6 +50,7 @@ let componentList = [
     ComponentsModule,
     FormsModule,
     NgxDatatableModule,
+    NgSelectModule,
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
     ProgressbarModule.forRoot(),

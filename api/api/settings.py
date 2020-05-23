@@ -61,13 +61,26 @@ INSTALLED_APPS = [
     'rest_auth',
     'simple_history',
 
-    'organisations',
-    'users',
-
-    'funcs',
+    'campaigns',
+    'commits',
+    'contacts',
+    'diagrams',
+    'documents',
+    'deployments',
+    'functions',
+    'invoices',
+    'maintenances',
     'meetings',
     'notes',
-    'projects'
+    'notifications',
+    'organisations',
+    'presentations',
+    'projects',
+    'quotations',
+    'submissions',
+    'tickets',
+    'users',
+    'wireframes'
 ]
 
 MIDDLEWARE = [

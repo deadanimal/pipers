@@ -69,7 +69,7 @@ export class UserNewComponent implements OnInit {
         console.log(error);
       },
       () => {
-        this.router.navigateByUrl('/users/user')
+        this.router.navigateByUrl('/managements/user')
       }
     )        
   }

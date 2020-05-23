@@ -138,48 +138,39 @@
       <div class=" card-wrapper">
 
         <div class=" card">
-          <div class=" card-header"><h3 class=" mb-0">Basic Details</h3></div>
 
           <div class=" card-body">
             <form #f="ngForm" (ngSubmit)="onSubmit()">
-              <div class=" form-group row">
-                <label
-                  class=" col-md-2 col-form-label form-control-label"
-                  for="example-text-input">
-                  UUID
-                </label>
 
-                <div class=" col-md-10">             
-                  {{organisation.id}}
-                </div>
-              </div>
 
               <div class=" form-group row">
                 <label
-                  class=" col-md-2 col-form-label form-control-label"
+                  class=" col-md-3 col-form-label form-control-label"
                   for="example-search-input">
                   Name
                 </label>
 
-                <div class=" col-md-10">
+                <div class=" col-md-9">
                   <input type="text" class=" form-control" [placeholder]="organisation.name" [(ngModel)]="organisationForm.name" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
               <div class=" form-group row">
                 <label
-                  class=" col-md-2 col-form-label form-control-label"
+                  class=" col-md-3 col-form-label form-control-label"
                   for="example-search-input">
-                  Label
+                  Short Name
                 </label>
 
-                <div class=" col-md-10">
-                  <input type="text" class=" form-control" [placeholder]="organisation.label" [(ngModel)]="organisationForm.label" [ngModelOptions]="{standalone: true}">
+                <div class=" col-md-9">
+                  <input type="text" class=" form-control" [placeholder]="organisation.short_name" [(ngModel)]="organisationForm.short_name" [ngModelOptions]="{standalone: true}">
               </div>
               </div>
               <p>
                 <button class=" btn btn-default" type="submit" [disabled]="!f.valid">Update</button>
               </p>
+
+              <p class="card-text"><small class="text-muted">ID: {{organisation.id}}</small></p>
             </form>   
           </div>
         </div>
@@ -190,11 +181,11 @@
       <div class=" card-wrapper">
 
         <div class=" card">
-          <div class=" card-header"><h3 class=" mb-0">HTML5 inputs</h3></div>
+          <div class=" card-header"><h3 class=" mb-0"></h3></div>
 
           <div class=" card-body">
-
           </div>
+
         </div>
       </div>
     </div>

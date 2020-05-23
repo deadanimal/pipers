@@ -3,8 +3,15 @@ import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
+import * as moment from "moment";
+import "moment-timezone";
+
+
 import { Notification } from '../../../models/notification.model';
 import { NotificationService } from '../../../services/notification.service';
+
+import { Organisation } from '../../../models/organisation.model';
+import { OrganisationService } from '../../../services/organisation.service';
 
 @Component({
   selector: "app-project-notification-new",
@@ -13,6 +20,7 @@ import { NotificationService } from '../../../services/notification.service';
 export class NotificationNewComponent implements OnInit {
   
   notifications: Notification[];
+  organisations: Organisation[];
   
   notificationForm: any = {};
   loading = false;
@@ -22,12 +30,15 @@ export class NotificationNewComponent implements OnInit {
 
   constructor(        
     public router: Router,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    private organisationService: OrganisationService,) {
  
   }
 
 
   ngOnInit() {
+
+    this.organisations = this.organisationService.organisations;
 
     var navbar = document.getElementsByClassName("navbar-top")[0];
     navbar.classList.add("bg-secondary");
@@ -55,11 +66,19 @@ export class NotificationNewComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.notificationForm);
+    
+    let b = this.notificationForm.briefing_date;
+    let s = this.notificationForm.submission_date;
 
-    const formData = new FormData();
-    formData.append('name', this.notificationForm.name);  
-    formData.append('label', this.notificationForm.label);    
+    if (b) {
+      let b_ = moment(b).toDate();
+      this.notificationForm.briefing_date = b_;
+    }    
+    
+    if (s) {
+      let s_ = moment(s).toDate();
+      this.notificationForm.submission_date = s_;     
+    }
 
     this.notificationService.newNotification(this.notificationForm).subscribe(
       (data: any) => {

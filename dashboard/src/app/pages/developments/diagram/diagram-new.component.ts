@@ -1,0 +1,106 @@
+import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router'
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { first } from 'rxjs/operators';
+//import Quill from 'quill';
+
+
+import { Diagram } from '../../../models/diagram.model';
+import { DiagramService } from '../../../services/diagram.service';
+import { OrganisationService } from 'src/app/services/organisation.service';
+import { ProjectService } from 'src/app/services/project.service';
+import { SubmissionService } from 'src/app/services/submission.service';
+
+@Component({
+  selector: "app-project-diagram-new",
+  templateUrl: "diagram-new.component.html"
+})
+export class DiagramNewComponent implements OnInit {
+  
+  diagrams: Diagram[];
+  
+  diagramForm: any = {};
+  loading = false;
+  submitted = false;  
+
+  organisations;
+  projects;
+  submissions;
+
+  svg_link: string = ''
+
+
+  constructor(        
+    public router: Router,
+    private diagramService: DiagramService,    
+    private organisationService: OrganisationService,
+    private projectService: ProjectService,
+    private submissionService: SubmissionService) {
+ 
+  }
+
+
+  ngOnInit() {
+
+
+    this.organisations = this.organisationService.organisations;
+    this.projects = this.projectService.projects;
+    this.submissions = this.submissionService.submissions;  
+      
+      
+
+    var navbar = document.getElementsByClassName("navbar-top")[0];
+    navbar.classList.add("bg-secondary");
+    navbar.classList.add("navbar-light");
+    navbar.classList.remove("bg-danger");
+    navbar.classList.remove("navbar-dark");
+
+    var navbarSearch = document.getElementsByClassName("navbar-search")[0];
+    navbarSearch.classList.add("navbar-search-dark");
+    navbarSearch.classList.remove("navbar-search-light");    
+      
+  }
+
+  ngOnDestroy() {
+    var navbar = document.getElementsByClassName("navbar-top")[0];
+    navbar.classList.remove("bg-secondary");
+    navbar.classList.remove("navbar-light");
+    navbar.classList.add("bg-danger");
+    navbar.classList.add("navbar-dark");
+
+    var navbarSearch = document.getElementsByClassName("navbar-search")[0];
+    navbarSearch.classList.remove("navbar-search-dark");
+    navbarSearch.classList.add("navbar-search-light");
+  }  
+
+
+  onSubmit() {
+
+    this.diagramService.newDiagram(this.diagramForm).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        this.router.navigateByUrl('/developments/diagram')
+      }
+    )        
+  }
+
+  generateUML() {
+
+
+    this.diagramService.generateUML(this.diagramForm.code).subscribe(
+      (data: any) => {
+        this.svg_link = data['svg_link']
+      }
+    )
+
+
+  }
+
+
+
+}

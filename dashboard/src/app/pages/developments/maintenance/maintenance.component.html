@@ -1,0 +1,172 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <h6 class=" h2 d-inline-block mb-0">Developer: Maintenance</h6>
+        </div>
+
+        <div class=" col-lg-6 col-5 text-right">
+          <button class=" btn btn-sm btn-default" (click)="moveTo('new')">Add</button>
+          <!--<button class=" btn btn-sm btn-success" (click)="moveTo('new')">Add Comment</button>-->
+          <!--<button class=" btn btn-sm btn-info" (click)="moveTo('list')">View</button>-->
+          <!--<button class=" btn btn-sm btn-danger" (click)="moveTo('new')">Need Help</button>-->
+        </div>                    
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+
+  <div id="card-stats-bg-component" class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="card-stats-bg-component-tab">
+    <div class="row mb-4">
+      <div class="col-lg-3">
+        <div class="card bg-gradient-default">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">TBD</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-success">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">TBD</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-info">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">TBD</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card bg-danger">
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0 text-white">TBD</h5>
+                <span class="h1 font-weight-bold mb-0 text-white">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>   
+  
+  <div class=" card">
+    <div class="dataTables_wrapper py-4">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="dataTables_length" id="datatable_length">
+            <label>
+              Show
+              <select
+                name="datatable_length"
+                aria-controls="datatable"
+                class="form-control form-control-sm"
+                (change)="entriesChange($event)"
+              >
+                <option value="10" [selected]="entries == 10">10</option>
+                <option value="25" [selected]="entries == 25">25</option>
+                <option value="50" [selected]="entries == 50">50</option>
+                <option value="-1" [selected]="entries == -1">All</option>
+              </select>
+              entries
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div id="datatable_filter" class="dataTables_filter">
+            <label>
+              <input
+                type="search"
+                class="form-control form-control-sm"
+                placeholder="Search records"
+                aria-controls="datatable"
+                (keyup)="filterTable($event)"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <ngx-datatable
+        id="print-section"
+        class="bootstrap selection-cell"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="entries != -1 ? entries : undefined"
+        [rows]="temp"
+        [selected]="selected"
+        [selectionType]="'single'"
+        (activate)="onActivate($event)"
+        (select)="onSelect($event)">
+
+        <ngx-datatable-column name="Name"></ngx-datatable-column>
+        
+        <ngx-datatable-column name="Project_name">
+          <ng-template let-column="column" ngx-datatable-header-template> Project Name </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div *ngIf="row.class_type == 'PR'">{{row.project?.name}}</div>
+            <div *ngIf="row.class_type == 'SM'">{{row.submission?.name}}</div>
+          </ng-template>              
+        </ngx-datatable-column>               
+
+        <ngx-datatable-column name="Class_Type" prop="class_type">
+          <ng-template let-column="column" ngx-datatable-header-template> Class Type </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div *ngIf="row.class_type == 'NA'">Not Available</div>
+            <div *ngIf="row.class_type == 'PR'">Project</div>
+            <div *ngIf="row.class_type == 'SM'">Submission</div>
+          </ng-template>              
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Diagram_Type" prop="diagram_type">
+          <ng-template let-column="column" ngx-datatable-header-template> Diagram Type </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div *ngIf="row.diagram_type == 'NA'">Not Available</div>
+            <div *ngIf="row.diagram_type == 'DP'">Data Table</div>
+            <div *ngIf="row.diagram_type == 'PF'">Process Flow</div>
+          </ng-template>              
+        </ngx-datatable-column>        
+        
+        <ngx-datatable-footer></ngx-datatable-footer>
+        <!--
+        <ngx-datatable-column name="Creation Date">
+          <ng-template let-column="column" ngx-datatable-header-template> Creation Date </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>{{ row.created_date | amLocal | amDateFormat:'DD-MM-y hh:mm A' }}</ng-template>              
+        </ngx-datatable-column>       
+      -->     
+
+      </ngx-datatable>
+    </div>
+
+  </div>    
+
+</div>

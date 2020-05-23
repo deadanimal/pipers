@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
+import { OrganisationService } from 'src/app/services/organisation.service';
 
 @Component({
   selector: "app-user-user-detail",
@@ -19,10 +20,14 @@ export class UserDetailComponent implements OnInit {
   loading = false;
   submitted = false;  
 
+  organisations;
+
   constructor(        
     public route: ActivatedRoute,
     public router: Router,
-    private userService: UserService) {
+    private userService: UserService,
+    private organisationService: OrganisationService,
+    ) {
   }
 
 
@@ -31,6 +36,7 @@ export class UserDetailComponent implements OnInit {
 
     this._id = this.route.snapshot.params['id'];
     this.user = this.userService.user;
+    this.organisations = this.organisationService.organisations;
 
     if (!this.user) {
       this.getSpecificUser(this._id)
@@ -91,7 +97,7 @@ export class UserDetailComponent implements OnInit {
         console.log(error);
       },
       () => {
-        this.router.navigateByUrl('/users/user')
+        this.router.navigateByUrl('/managements/user')
       }
     )        
   }

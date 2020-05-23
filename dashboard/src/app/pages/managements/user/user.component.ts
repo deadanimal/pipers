@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import * as _ from 'underscore';
+
 
 export enum SelectionType {
   single = "single",
@@ -10,6 +12,8 @@ export enum SelectionType {
   cell = "cell",
   checkbox = "checkbox"
 }
+
+import { OrganisationService } from 'src/app/services/organisation.service';
 
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
@@ -33,6 +37,7 @@ export class UserComponent implements OnInit {
   constructor(        
     public router: Router,
     private spinner: NgxSpinnerService,
+    private organisationService: OrganisationService,
     private userService: UserService) {
    
 
@@ -103,16 +108,24 @@ export class UserComponent implements OnInit {
     this.spinner.show();
 
     this.userService.getUsers().subscribe(
-      (data) => {
-        this.userService.users = data;
+      (data) => {      
+        this.userService.users = _.sortBy(data, 'email'); 
       },
       (error) => {
         console.log(error);
         this.spinner.hide();
       },
       () => {
-        this.users = this.userService.users;
-        this.temp = this.users;
+        
+        this.userService.users.forEach((project) => {
+          let org = this.organisationService.organisations.find((element) => element.id == project['organisation'])
+          if (org) {
+            project['organisation'] = org
+          }      
+        })         
+        this.temp = this.userService.users;
+
+        console.log(this.temp)
         this.spinner.hide();
       }
     )   

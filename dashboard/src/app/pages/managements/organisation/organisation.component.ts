@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import * as _ from 'underscore';
+
 
 export enum SelectionType {
   single = "single",
@@ -104,7 +106,7 @@ export class OrganisationComponent implements OnInit {
 
     this.organisationService.getOrganisations().subscribe(
       (data) => {
-        this.organisationService.organisations = data;
+        this.organisationService.organisations = _.sortBy(data, 'name'); 
       },
       (error) => {
         console.log(error);

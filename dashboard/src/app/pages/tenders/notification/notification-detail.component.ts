@@ -75,17 +75,17 @@ export class NotificationDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.notificationForm);
+  
+    let new_form = {
+      'project': this.notificationForm.project,
+      'briefing_required': this.notificationForm.briefing_required,
+      'submission_required': this.notificationForm.submission_required,
+      'source': this.notificationForm.source
+    }
 
-    const formData = new FormData();
-    formData.append('name', this.notificationForm.name);  
-    formData.append('label', this.notificationForm.label);    
-
-    this.notificationService.updateNotification(this._id,this.notificationForm).subscribe(
+    this.notificationService.updateNotification(this._id, new_form).subscribe(
       (data: any) => {
         console.log(data);
-        this.notificationService.notification = data;
-        this.notification = this.notificationService.notification;
       },
       (error) => {
         console.log(error);
@@ -94,6 +94,36 @@ export class NotificationDetailComponent implements OnInit {
         this.router.navigateByUrl('/tenders/notification')
       }
     )        
+  }
+
+  action(action_type) {
+
+    if (action_type == 'approve') {
+      this.notificationService.approveNotification(this._id).subscribe(
+        (data: any) => {
+
+        },
+        (error) => {
+
+        },
+        () => {
+          this.router.navigateByUrl('/tenders/notification')
+        }
+      )
+    } else if (action_type == 'reject') {
+      this.notificationService.rejectNotification(this._id).subscribe(
+        (data: any) => {
+
+        },
+        (error) => {
+
+        },
+        () => {
+          this.router.navigateByUrl('/tenders/notification')
+        }
+      )
+    }
+
   }
 
 

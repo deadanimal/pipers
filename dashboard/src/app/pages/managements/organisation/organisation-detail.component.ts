@@ -91,7 +91,7 @@ export class OrganisationDetailComponent implements OnInit {
         console.log(error);
       },
       () => {
-        this.router.navigateByUrl('/organisations/organisation')
+        this.router.navigateByUrl('/managements/organisation')
       }
     )        
   }

@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import * as _ from 'underscore';
+
 
 export enum SelectionType {
   single = "single",
@@ -10,6 +12,8 @@ export enum SelectionType {
   cell = "cell",
   checkbox = "checkbox"
 }
+
+import { OrganisationService } from 'src/app/services/organisation.service';
 
 import { Project } from '../../../models/project.model';
 import { ProjectService } from '../../../services/project.service';
@@ -33,6 +37,7 @@ export class ProjectComponent implements OnInit {
   constructor(        
     public router: Router,
     private spinner: NgxSpinnerService,
+    private organisationService: OrganisationService,
     private projectService: ProjectService) {
    
 
@@ -104,22 +109,30 @@ export class ProjectComponent implements OnInit {
 
     this.projectService.getProjects().subscribe(
       (data) => {
-        this.projectService.projects = data;
+        
+        this.projectService.projects = _.sortBy(data, 'name'); 
       },
       (error) => {
         console.log(error);
         this.spinner.hide();
       },
       () => {
-        this.projects = this.projectService.projects;
-        this.temp = this.projects;
+        
+        this.projectService.projects.forEach((project) => {
+          let org = this.organisationService.organisations.find((element) => element.id == project['client'])
+          if (org) {
+            project['client'] = org
+          }      
+        })  
+        this.temp = this.projectService.projects;
+        console.log(this.temp)
         this.spinner.hide();
       }
     )   
 
   }
 
-  moveTo(link) {
+  moveTo(link: string) {
 
     if (link == 'new') {
       this.router.navigateByUrl('/managements/project/new')

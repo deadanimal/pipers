@@ -4,46 +4,15 @@
 >
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']">
-      <img src="assets/img/brand/red.png" />
+      <img src="assets/img/brand/red-large.png" />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbar-collapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      (click)="isCollapsed = !isCollapsed"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
     <div
       class="navbar-collapse navbar-custom-collapse collapse"
-      id="collapseBasic" [collapse]="isCollapsed">
-      <div class="navbar-collapse-header">
-        <div class="row">
-          <div class="col-6 collapse-brand">
-            <a [routerLink]="['/dashboards/dashboard']">
-              <img src="assets/img/brand/blue.png" />
-            </a>
-          </div>
-          <div class="col-6 collapse-close">
-            <button
-              type="button"
-              class="navbar-toggler"
-              data-toggle="collapse"
-              data-target="#navbar-collapse"
-              aria-controls="navbar-collapse"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              (click)="isCollapsed = !isCollapsed">
-              <span></span> <span></span>
-            </button>
-          </div>
-        </div>
-      </div>
+      id="collapseBasic">
 
       <ul class="navbar-nav mr-auto">
+        <!--
 
         <li class="nav-item">
           <a
@@ -80,10 +49,12 @@
             <span class="nav-link-inner--text text-default">IoT</span>
           </a>
         </li>
+      -->
       </ul>      
 
       <hr class="d-lg-none" />
       <ul class="navbar-nav align-items-lg-center ml-lg-auto text-light">
+      <!--
         <li class="nav-item">
           <a
             class="nav-link nav-link-icon  text-default"
@@ -94,6 +65,7 @@
             <span class="nav-link-inner--text d-lg-none">Facebook</span>
           </a>
         </li>
+      -->
         <li class="nav-item">
           <a
             class="nav-link nav-link-icon  text-default"
@@ -154,6 +126,7 @@
       </div>
       <div class="col-xl-6">
         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+          <!--
           <li class="nav-item">
             <a
               [routerLink]="['/p/about']"
@@ -168,7 +141,8 @@
             <a
               [routerLink]="['/p/hiring']"
               class="nav-link">Hiring</a>
-          </li>                    
+          </li>       
+        -->             
           <li class="nav-item">
             <a
             [routerLink]="['/p/terms']"

@@ -5,7 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
-import { PresentationLayoutComponent } from "./layouts/presentation-layout/presentation-layout.component";
+//import { PresentationLayoutComponent } from "./layouts/presentation-layout/presentation-layout.component";
 
 import { AuthGuard } from './helpers/auth.guard';
 
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    component: PresentationLayoutComponent,
+    component: AuthLayoutComponent,
     children: [
       {
         path: "p",

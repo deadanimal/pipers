@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.formats import get_format
 
 from django.contrib.gis.db import models
+from simple_history.models import HistoricalRecords
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from api.helpers import PathAndRename
@@ -36,6 +37,8 @@ class Note(models.Model):
 
     creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     created_date = models.DateTimeField(auto_now=True)
+
+    history = HistoricalRecords()
     
 
     def __str__(self):
@@ -52,6 +55,8 @@ class NoteChart(models.Model):
 
     created_date = models.DateTimeField(auto_now=True)
 
+    history = HistoricalRecords()
+
     def __str__(self):
         return self.name         
 
@@ -65,6 +70,8 @@ class NoteItem(models.Model):
     text_note = models.TextField()
 
     created_date = models.DateTimeField(auto_now=True)
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.name
@@ -90,6 +97,8 @@ class NoteAttachment(models.Model):
     )  
 
     created_date = models.DateTimeField(auto_now=True)
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.name

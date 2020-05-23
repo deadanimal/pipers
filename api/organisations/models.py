@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.formats import get_format
 
 from django.contrib.gis.db import models
+from simple_history.models import HistoricalRecords
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from api.helpers import PathAndRename
@@ -38,6 +39,8 @@ class Organisation(models.Model):
     )            
 
     created_date = models.DateTimeField(auto_now=True)
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.name

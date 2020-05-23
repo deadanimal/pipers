@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.formats import get_format
 
 from django.contrib.gis.db import models
+from simple_history.models import HistoricalRecords
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from api.helpers import PathAndRename
@@ -34,6 +35,8 @@ class Project(models.Model):
 
     creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     created_date = models.DateTimeField(auto_now=True)
+
+    history = HistoricalRecords()
     
 
     def __str__(self):
@@ -44,11 +47,15 @@ class ProjectMilestone(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)
 
+    history = HistoricalRecords()
+
 
 class ProjectLog(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)
+
+    history = HistoricalRecords()
 
 class ProjectSoftwareModule(models.Model):
 
@@ -66,6 +73,8 @@ class ProjectSoftwareModule(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)
 
+    history = HistoricalRecords()
+
 class ProjectTradingModule(models.Model):
 
     PROJECT_WORK_TYPE = [
@@ -82,6 +91,8 @@ class ProjectTradingModule(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)    
 
+    history = HistoricalRecords()
+
 class ProjectWorkModule(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -97,3 +108,5 @@ class ProjectWorkModule(models.Model):
         choices=PROJECT_WORK_TYPE,
         default='NA',
     )      
+
+    history = HistoricalRecords()

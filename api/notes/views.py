@@ -31,10 +31,6 @@ from .serializers import (
     NoteItemSerializer
 )
 
-from .tasks import (
-    generate_diagram
-)
-
 
 class NoteViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Note.objects.all()
@@ -80,19 +76,7 @@ class NoteChartViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return NoteChart.objects.filter(note__id=self.kwargs['parent_lookup_note'])
-
-    @action(methods=['GET'], detail=False)
-    def generated(self, request, *args, **kwargs):        
-
-        note_chart = NoteChart.objects.filter(note__id=self.kwargs['parent_lookup_note'])
-        serializer = NoteChartSerializer(note_chart, many=True)
-        data = serializer.data
-
-        for item in data:
-            item['svg_link'] = generate_diagram(item['chart_text'])
-            item['png_link'] = generate_diagram(item['chart_text'], 'png')
-
-        return Response(data)       
+      
 
 class NoteItemViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = NoteItem.objects.all()

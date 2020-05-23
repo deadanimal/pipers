@@ -6,6 +6,7 @@ import uuid
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from simple_history.models import HistoricalRecords
 
 from api.helpers import PathAndRename
 
@@ -23,10 +24,13 @@ class CustomUser(AbstractUser):
 
     USER_TYPE = [
 
-        # Pipeline Side
         ('AN', 'Analyst'), 
         ('DE', 'Developer'), 
-        ('PM', 'Project Manager'), 
+        ('TM', 'Technical Manager'), 
+        
+        ('BE', 'Business Executive'), 
+        ('SE', 'Sales Executive'), 
+        ('SM', 'Sales Manager'), 
 
         ('CL', 'Client'), 
 
@@ -38,6 +42,8 @@ class CustomUser(AbstractUser):
         choices=USER_TYPE,
         default='NA',
     )        
+
+    history = HistoricalRecords()
    
     
     def __str__(self):
@@ -50,6 +56,8 @@ class UserSettings(models.Model):
     name = models.CharField(blank=True, max_length=255)
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.name            

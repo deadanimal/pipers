@@ -2,9 +2,15 @@
   <div class=" container-fluid">
     <div class=" header-body">
       <div class=" row align-items-center py-4">
-        <div class=" col-lg-6 col-7">
-          <h6 class=" h2 d-inline-block mb-0">{{notification.name}}</h6>
+        <div class=" col-lg-6 col-6">
+          <h6 class=" h2 d-inline-block mb-0">{{notification.project}}</h6>
         </div>
+
+        <div class=" col-lg-6 col-5 text-right">
+          <button class=" btn btn-sm btn-success" (click)="action('approve')">Approve</button>
+          <button class=" btn btn-sm btn-danger" (click)="action('reject')">Reject</button>
+        </div>                   
+        
 
 
       </div>
@@ -14,172 +20,81 @@
 
 
 <div class=" container-fluid mt--6" *ngIf="notification">
-  <!--
-  <div class=" card mb-4">
-    <div class=" card-header"><h3 class=" mb-0">Form group in grid</h3></div>
-
-    <div class=" card-body">
-
-      <div class=" row">
-        <div class=" col-md-4">
-          <div class=" form-group">
-            <label class=" form-control-label" for="example3cols1Input">
-              One of three cols
-            </label>
-
-            <input
-              class=" form-control"
-              id="example3cols1Input"
-              placeholder="One of three cols"
-              type="text"
-            />
-          </div>
-        </div>
-
-        <div class=" col-md-4">
-          <div class=" form-group">
-            <label class=" form-control-label" for="example3cols2Input">
-              One of three cols
-            </label>
-
-            <input
-              class=" form-control"
-              id="example3cols2Input"
-              placeholder="One of three cols"
-              type="text"
-            />
-          </div>
-        </div>
-
-        <div class=" col-md-4">
-          <div class=" form-group">
-            <label class=" form-control-label" for="example3cols3Input">
-              One of three cols
-            </label>
-
-            <input
-              class=" form-control"
-              id="example3cols3Input"
-              placeholder="One of three cols"
-              type="text"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class=" row">
-        <div class=" col-sm-6 col-md-3">
-          <div class=" form-group">
-            <label class=" form-control-label" for="example4cols1Input">
-              One of four cols
-            </label>
-
-            <input
-              class=" form-control"
-              id="example4cols1Input"
-              placeholder="One of four cols"
-              type="text"
-            />
-          </div>
-        </div>
-
-        <div class=" col-sm-6 col-md-3">
-          <div class=" form-group">
-            <label class=" form-control-label" for="example4cols2Input">
-              One of four cols
-            </label>
-
-            <input
-              class=" form-control"
-              id="example4cols2Input"
-              placeholder="One of four cols"
-              type="text"
-            />
-          </div>
-        </div>
-
-        <div class=" col-sm-6 col-md-3">
-          <div class=" form-group">
-            <label class=" form-control-label" for="example4cols3Input">
-              One of four cols
-            </label>
-
-            <input
-              class=" form-control"
-              id="example4cols3Input"
-              placeholder="One of four cols"
-              type="text"
-            />
-          </div>
-        </div>
-
-        <div class=" col-sm-6 col-md-3">
-          <div class=" form-group">
-            <label class=" form-control-label" for="example4cols3Input">
-              One of four cols
-            </label>
-
-            <input
-              class=" form-control"
-              id="example4cols4Input"
-              placeholder="One of four cols"
-              type="text"
-            />
-          </div>
-        </div>
-      </div>
-    
-    </div>
-  </div>
-  -->
 
   <div class=" row">
     <div class=" col-lg-6">
       <div class=" card-wrapper">
 
         <div class=" card">
-          <div class=" card-header"><h3 class=" mb-0">Basic Details</h3></div>
 
           <div class=" card-body">
             <form #f="ngForm" (ngSubmit)="onSubmit()">
-              <div class=" form-group row">
-                <label
-                  class=" col-md-2 col-form-label form-control-label"
-                  for="example-text-input">
-                  UUID
-                </label>
 
-                <div class=" col-md-10">             
-                  {{notification.id}}
+              <div class=" form-group row">
+                <label class=" col-md-4 col-form-label form-control-label" for="example-text-input">Project</label>
+                <div class=" col-md-8">
+                  <input type="text" class=" form-control" [placeholder]="notification.project" [(ngModel)]="notificationForm.project" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
               <div class=" form-group row">
-                <label
-                  class=" col-md-2 col-form-label form-control-label"
-                  for="example-search-input">
-                  Name
-                </label>
+                <label class=" col-md-4 col-form-label form-control-label" for="example-text-input">Client</label>
+                <div class=" col-md-8 col-form-label">             
+                  {{notification.client.name}}
+                </div>
+              </div>              
 
-                <div class=" col-md-10">
-                  <input type="text" class=" form-control" [placeholder]="notification.name" [(ngModel)]="notificationForm.name" [ngModelOptions]="{standalone: true}">
+              <div class=" form-group row">
+                <label class=" col-md-4 col-form-label form-control-label" for="example-text-input">Submission Date</label>
+                <div class=" col-md-8 col-form-label">             
+                  {{notification.submission_date | date:'d-MMM-y, h:mm:ss a' }}
                 </div>
               </div>
 
               <div class=" form-group row">
-                <label
-                  class=" col-md-2 col-form-label form-control-label"
-                  for="example-search-input">
-                  Label
-                </label>
+                <label class=" col-md-4 col-form-label form-control-label" for="example-text-input">Briefing Required?</label>
+                <div class=" col-md-8">
+                  <select class="form-control" [(ngModel)]="notificationForm.briefing_required" [ngModelOptions]="{standalone: true}">
+                    <option value="FL">False</option>
+                    <option value="TR">True</option>                    
+                  </select>       
+                </div>
+              </div>
+              
+              <div class=" form-group row" *ngIf="notificationForm.briefing_required == 'TR'">
+                <label class=" col-md-4 col-form-label form-control-label" for="example-text-input">Briefing Date</label>
+                <div class=" col-md-8 col-form-label">             
+                  {{notification.briefing_date | date:'d-MMM-y, h:mm:ss a' }}
+                </div>
+              </div>   
+              
+              <div class=" form-group row">
+                <label class=" col-md-4 col-form-label form-control-label" for="example-text-input">Purchase Required?</label>
+                <div class=" col-md-8">
+                  <select class="form-control" [(ngModel)]="notificationForm.purchase_required" [ngModelOptions]="{standalone: true}">
+                    <option value="FL">False</option>
+                    <option value="TR">True</option>                    
+                  </select>       
+                </div>
+              </div>              
 
-                <div class=" col-md-10">
-                  <input type="text" class=" form-control" [placeholder]="notification.label" [(ngModel)]="notificationForm.label" [ngModelOptions]="{standalone: true}">
-              </div>
-              </div>
+              <div class=" form-group row">
+                <label class=" col-md-4 col-form-label form-control-label" for="example-text-input">Source</label>
+                <div class=" col-md-8">
+                  <select class="form-control" [(ngModel)]="notificationForm.source" [ngModelOptions]="{standalone: true}">
+                    <option value="EP">e-Perolehan</option>
+                    <option value="TD">Tender Direct</option>
+                    <option value="T2">Tender2U</option>
+                  </select>  
+                </div>
+              </div>              
+
+
               <p>
                 <button class=" btn btn-default" type="submit" [disabled]="!f.valid">Update</button>
               </p>
+
+              <p class="card-text"><small class="text-muted">ID: {{notification.id}}</small></p>
             </form>   
           </div>
         </div>
@@ -190,7 +105,7 @@
       <div class=" card-wrapper">
 
         <div class=" card">
-          <div class=" card-header"><h3 class=" mb-0">HTML5 inputs</h3></div>
+          <div class=" card-header"><h3 class=" mb-0"></h3></div>
 
           <div class=" card-body">
 
@@ -198,5 +113,6 @@
         </div>
       </div>
     </div>
+  
   </div>
 </div>

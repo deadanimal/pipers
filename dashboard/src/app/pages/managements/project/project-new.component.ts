@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { Project } from '../../../models/project.model';
 import { ProjectService } from '../../../services/project.service';
+import { OrganisationService } from 'src/app/services/organisation.service';
 
 @Component({
   selector: "app-project-project-new",
@@ -18,16 +19,19 @@ export class ProjectNewComponent implements OnInit {
   loading = false;
   submitted = false;  
 
-
+  organisations;
 
   constructor(        
     public router: Router,
-    private projectService: ProjectService) {
+    private projectService: ProjectService,
+    private organisationService: OrganisationService) {
  
   }
 
 
   ngOnInit() {
+
+    this.organisations = this.organisationService.organisations;
 
     var navbar = document.getElementsByClassName("navbar-top")[0];
     navbar.classList.add("bg-secondary");

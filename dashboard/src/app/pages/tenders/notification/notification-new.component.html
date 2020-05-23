@@ -2,9 +2,10 @@
   <div class=" container-fluid">
     <div class=" header-body">
       <div class=" row align-items-center py-4">
-        <div class=" col-lg-6 col-7">
-          <h6 class=" h2 d-inline-block mb-0">Database: New Notification</h6>
+        <div class=" col-lg-6 col-6">
+          <h6 class=" h2 d-inline-block mb-0">Create New Notification</h6>
         </div> 
+     
 
       </div>
     </div>
@@ -20,37 +21,82 @@
 
     <div class=" col">
       <div class=" card-wrapper">
-        <div class=" card">
-          <div class=" card-header"><h3 class=" mb-0">New Notification</h3></div>
+        <div class=" card-deck flex-column flex-xl-row">
+          
+          <div class=" card">
+  
+            <div class=" card-body">
+  
+              <form #f="ngForm" (ngSubmit)="onSubmit()">
+      
+                <div class=" form-group">
+                  <label class=" form-control-label">Project</label>
+                  <input type="text" class=" form-control" [(ngModel)]="notificationForm.project" [ngModelOptions]="{standalone: true}">
+                </div>
+  
+                <div class=" form-group">
+                  <label class=" form-control-label">Client </label>   
+                  
+                  <ng-select 
+                    [items]="organisations"
+                    bindLabel="name"
+                    bindValue="id"
+                    [(ngModel)]="notificationForm.client"
+                    [ngModelOptions]="{standalone: true}">
+                  </ng-select>                  
+                </div>        
+                
+                <div class=" form-group">
+                  <label class=" form-control-label">Submission Date </label>
+                  <input type="datetime-local" class=" form-control" [(ngModel)]="notificationForm.submission_date" [ngModelOptions]="{standalone: true}">
+                </div>  
 
-          <div class=" card-body">
+                <div class=" form-group">
+                  <label class=" form-control-label">Briefing Required? </label>
+                  <select class="form-control" [(ngModel)]="notificationForm.briefing_required" [ngModelOptions]="{standalone: true}">
+                    <option value="FL">False</option>
+                    <option value="TR">True</option>                    
+                  </select>                  
+                </div>                         
 
-            <form #f="ngForm" (ngSubmit)="onSubmit()">
-    
-              <div class=" form-group">
-                <label class=" form-control-label">Name </label>
-
-                <input type="text" class=" form-control" placeholder="Default name" [(ngModel)]="notificationForm.name" [ngModelOptions]="{standalone: true}">
-              </div>
-
-              <div class=" form-group">
-                <label class=" form-control-label">Label </label>
-
-                <input type="text" class=" form-control" placeholder="Default label" [(ngModel)]="notificationForm.label" [ngModelOptions]="{standalone: true}">
-              </div>              
-
-              <p>
-                <button class=" btn btn-default" type="submit" [disabled]="!f.valid">Submit</button>
-              </p>
-            </form>            
-
+                <div class=" form-group" *ngIf="notificationForm.briefing_required == 'TR'">
+                  <label class=" form-control-label">Briefing Date </label>
+                  <input type="datetime-local" class=" form-control" [(ngModel)]="notificationForm.briefing_date" [ngModelOptions]="{standalone: true}">
+                </div>         
+                
+                <div class=" form-group">
+                  <label class=" form-control-label">Purchase Required? </label>
+                  <select class="form-control" [(ngModel)]="notificationForm.purchase_required" [ngModelOptions]="{standalone: true}">
+                    <option value="TR">True</option>
+                    <option value="FL">False</option>
+                  </select>                  
+                </div>                     
+                
+                <div class=" form-group">
+                  <label class=" form-control-label">Source </label>
+                  <select class="form-control" [(ngModel)]="notificationForm.source" [ngModelOptions]="{standalone: true}">
+                    <option value="EP">e-Perolehan</option>
+                    <option value="TD">Tender Direct</option>
+                    <option value="T2">Tender2U</option>
+                  </select>                  
+                </div>                 
+  
+                <p>
+                  <button class=" btn btn-default" type="submit" [disabled]="!f.valid">Submit</button>
+                </p>
+              </form>            
+  
+            </div>
+          
           </div>
-        
+
         </div>
-
-
       </div>
     </div>
+
+    <div class=" col">
+
+    </div>    
   </div>  
   
 

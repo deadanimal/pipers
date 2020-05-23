@@ -72,7 +72,7 @@ export class NoteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllNotes();
+    //this.getAllNotes();
 
     var navbar = document.getElementsByClassName("navbar-top")[0];
     navbar.classList.add("bg-secondary");

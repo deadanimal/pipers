@@ -10,7 +10,7 @@ export class OrganisationService {
     organisations: Organisation[] = [];
     organisation: Organisation;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     getOrganisations() {
         return this.http.get<Organisation[]>(`${environment.apiUrl}organisations/`);

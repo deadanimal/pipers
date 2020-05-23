@@ -16,6 +16,7 @@ import { RouterModule } from "@angular/router";
 import { CollapseModule } from "ngx-bootstrap/collapse";
 import { DxVectorMapModule } from "devextreme-angular";
 import { BsDropdownModule } from "ngx-bootstrap";
+import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { BsDropdownModule } from "ngx-bootstrap";
     CollapseModule.forRoot(),
     DxVectorMapModule,
     PerfectScrollbarModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    KeyboardShortcutsModule 
   ],
   declarations: [
     FooterComponent,
